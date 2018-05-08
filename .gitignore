@@ -1,0 +1,10 @@
+.ipynb_checkpoints/
+Notebooks/example/
+*.yml
+*.pyc
+sandbox*.*
+desktop.ini
+__pycache__
+~$*.*
+Classifier.pkl
+ClassifierBig.pkl

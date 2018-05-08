@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>AutoTag</title>
+        <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+        <link rel='stylesheet' type='text/css' href="{{ url_for('static', filename='css/style.css') }}">
+    </head>
+    <body>
+        <div class="jumbotron text-center">
+            <h1>Welcome to AutoTag</h1>
+            <h3>Fill in your title and question and we'll tag it for you!</h3>
+        </div>
+       <div class="row">
+          <div class="col-md-4 col-md-offset-4">
+            <h2>Title</h2>
+            <div class="input-group">
+                <input type="text" id="title" style="width:500px" required="required">
+            </div>
+            <hr>
+            <h2>Question</h2>
+            <div class="input-group">
+                <textarea id="question" style="width:500px;height:150px;" required="required"></textarea>
+            </div>
+            <hr>
+            <hr>
+            <div class="input-group-btn">
+                <button id="submit_btn" type="button" class="btn btn-default">Tag it !</button>
+            </div>
+          </div>
+        </div>
+        <div class="jumbotron text-center">
+          <h2 id="result"></h2>
+        </div>
+    </body>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script>
+        $("#submit_btn").click(function(){
+            let title = $("#title").val();
+            let question = $("#question").val();
+            let data = {
+                "title" : title,
+                "question" : question
+            }
+            var jqxhr = $.post( "/tag/", data)
+              .done(function(data) {
+                  $("#result").html(data);
+              })
+              .fail(function() {
+                alert( "error" );
+              });
+            
+        $.ajax({
+              type: "POST",
+              url: /tag/,
+              data: {
+                "title" : title,
+                "question" : question
+              },
+              success: success,
+              dataType: dataType
+            });
+        });
+    </script>
+</html>
