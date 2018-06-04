@@ -8,3 +8,5 @@ __pycache__
 ~$*.*
 Classifier.pkl
 ClassifierBig.pkl
+*.docx
+*.pptx
